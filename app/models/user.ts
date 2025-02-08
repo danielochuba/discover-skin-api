@@ -11,23 +11,6 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
-/**
- * @swagger
- * components:
- * schemas:
- *      User:
- *        type: object
- *        properties:
- *          firstName:
- *            type: string
- *         lastName:
- *           type: string
- *          email:
- *            type: string
- *         password:
- *          type: string
- *
- */
 
 export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })

@@ -12,46 +12,6 @@ export default class UsersController {
     }
   }
 
-  /**
-   * @swagger
-   * /api/v1/users:
-   * post:
-   *     tags:
-   *       - Users
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           description: User payload
-   *           schema:
-   *             type: object
-   *             properties:
-   *               firstName:
-   *                 type: string
-   *                 example: 'James'
-   *                 required: true
-   *              lastName:
-   *               type: string
-   *              example: 'Bond'
-   *             required: true
-   *               email:
-   *                 type: string
-   *                 example: 'Bond007@example.com'
-   *                 required: true
-   *              password:
-   *                type: string
-   *               example: 'password'
-   *              required: true
-   *     produces:
-   *       - application/json
-   *     responses:
-   *       200:
-   *         description: Success
-   *         content:
-   *           application/json:
-   *             schema:
-   *               $ref: '#/components/schemas/User'
-   */
   async store({ request, response }: HttpContext) {
     try {
       const data = request.only(['email', 'firstName', 'lastName', 'password'])
