@@ -5,7 +5,6 @@ import hash from '@adonisjs/core/services/hash'
 import env from '#start/env'
 
 test.group('creating user', () => {
-  console.log(`${env.get('SERVER_URL')}/api/v1`)
   test('hashes user password', async ({ assert }) => {
     const user = new User()
     user.email = 'daniel@gmail.com'

@@ -26,12 +26,16 @@ router.get('/', async () => {
 
 router
   .group(() => {
-    router.post('/users', [UsersController, 'store'])
-    router.post('/login', [UsersController, 'login'])
-    router.get('/users', [UsersController, 'index'])
+    // USERS
     router
-      .post('/users/logout', [UsersController, 'logout'])
-      .use(middleware.auth({ guards: ['api'] }))
+      .group(() => {
+        router.post('/register', [UsersController, 'store'])
+        router.post('/login', [UsersController, 'login'])
+        router
+          .post('/logout', [UsersController, 'logout'])
+          .use(middleware.auth({ guards: ['api'] }))
+      })
+      .prefix('/users/auth')
 
     // VENDORS
 
