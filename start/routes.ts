@@ -59,6 +59,7 @@ router
     router.post('/experience-dates', [ExperienceDatesController, 'store'])
     router.get('/experience-dates/:id', [ExperienceDatesController, 'show'])
     router.put('/experience-dates/:id', [ExperienceDatesController, 'update'])
+    router.delete('/experience-dates/:id', [ExperienceDatesController, 'destroy'])
 
     // EXPERIENCE BOOKINGS
     router.get('/experience-bookings', [ExperienceBookingsController, 'index'])

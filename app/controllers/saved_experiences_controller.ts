@@ -5,7 +5,6 @@ export default class SavedExperiencesController {
   async index({ response, auth }: HttpContext) {
     try {
       const user = auth.user
-      console.log(user)
       if (!user) {
         return response.unauthorized({ message: 'User not found' })
       }

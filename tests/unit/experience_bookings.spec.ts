@@ -2,8 +2,10 @@ import { test } from '@japa/runner'
 import ExperienceBooking from '#models/experience_booking'
 import Experience from '#models/experience'
 import User from '#models/user'
+import testUtils from '@adonisjs/core/services/test_utils'
 
-test.group('Experience Booking CRUD', () => {
+test.group('Experience Booking CRUD', (group) => {
+  group.each.setup(() => testUtils.db().truncate())
   test('list all experience bookings', async ({ client }) => {
     const response = await client.get('/experience-bookings')
     response.assertStatus(200)
@@ -26,7 +28,9 @@ test.group('Experience Booking CRUD', () => {
     const response = await client.post('/experience-bookings').json({
       experience_id: experience.id,
       user_id: user.id,
-      date: '2025-10-12',
+      status: 'pending',
+      voucher: 'abc123',
+      price: 200.0,
     })
     response.assertStatus(201)
   })
@@ -50,7 +54,7 @@ test.group('Experience Booking CRUD', () => {
       userId: user.id,
       status: 'pending',
       voucher: 'abc123',
-      price: 100,
+      price: 100.0,
     })
 
     const response = await client.get(`/experience-bookings/${booking.id}`)
