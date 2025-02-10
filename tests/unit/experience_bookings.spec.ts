@@ -7,7 +7,6 @@ import testUtils from '@adonisjs/core/services/test_utils'
 test.group(
   'Throws unauthorrize error when performing Experience Booking CRUD without authentication',
   (group) => {
-    group.each.setup(() => testUtils.db().truncate())
     test('unauthorized acccess to list all experience bookings', async ({ client }) => {
       const response = await client.get('/experience-bookings')
       response.assertStatus(401)

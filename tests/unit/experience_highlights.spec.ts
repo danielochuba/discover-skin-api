@@ -18,9 +18,10 @@ test.group('Experience Highlight CRUD', () => {
 
     const response = await client.post('/experience-highlights').json({
       experience_id: experience.id,
-      highlight: 'Includes professional instructor and gear.',
+      title: 'Includes professional instructor and gear.',
+      description: 'Includes professional instructor and gear.',
     })
-    response.assertStatus(200)
+    response.assertStatus(201)
   })
 
   test('get an experience highlight by ID', async ({ client }) => {
@@ -76,6 +77,6 @@ test.group('Experience Highlight CRUD', () => {
     })
 
     const response = await client.delete(`/experience-highlights/${highlight.id}`)
-    response.assertStatus(200)
+    response.assertStatus(204)
   })
 })
