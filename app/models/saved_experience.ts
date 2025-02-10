@@ -2,8 +2,8 @@ import { DateTime } from 'luxon'
 import { BaseModel, beforeCreate, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import { v4 } from 'uuid'
-import Experience from '#models/experience.ts'
-import User from '#models/user.ts'
+import Experience from '#models/experience'
+import User from '#models/user'
 
 export default class SavedExperience extends BaseModel {
   @column({ isPrimary: true }) declare id: string

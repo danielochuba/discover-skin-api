@@ -5,7 +5,14 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.uuid('id').primary()
+      table.uuid('experience_id').references('id').inTable('experiences').onDelete('CASCADE')
+      table.date('date')
+      table.time('start_time')
+      table.time('end_time')
+      table.integer('max_spots')
+      table.integer('spots_reserved')
+      table.double('price')
 
       table.timestamp('created_at')
       table.timestamp('updated_at')

@@ -9,6 +9,8 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const VendorsController = () => import('#controllers/vendors_controller')
+const ExperiencesController = () => import('#controllers/experiences_controller')
 const UsersController = () => import('#controllers/users_controller')
 
 router.get('/', async () => {
@@ -37,5 +39,21 @@ router
     router
       .post('/users/logout', [UsersController, 'logout'])
       .use(middleware.auth({ guards: ['api'] }))
+
+    // VENDORS
+
+    router.get('/vendors', [VendorsController, 'index'])
+    router.post('/vendors', [VendorsController, 'store'])
+    router.get('/vendors/:id', [VendorsController, 'show'])
+    router.put('/vendors/:id', [VendorsController, 'update'])
+    router.delete('/vendors/:id', [VendorsController, 'destroy'])
+
+    // EXPERIENCE
+
+    router.get('/experiences', [ExperiencesController, 'index'])
+    router.post('/experiences', [ExperiencesController, 'store'])
+    router.get('/experiences/:id', [ExperiencesController, 'show'])
+    router.put('/experiences/:id', [ExperiencesController, 'update'])
+    router.delete('/experiences/:id', [ExperiencesController, 'destroy'])
   })
   .prefix('api/v1')
