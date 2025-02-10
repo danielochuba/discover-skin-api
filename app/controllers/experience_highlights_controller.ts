@@ -13,7 +13,7 @@ export default class ExperienceHighlightsController {
 
   async store({ request, response }: HttpContext) {
     try {
-      const data = request.only(['experience_id', 'title', 'description', 'image_url'])
+      const data = request.only(['experience_id', 'title', 'description', 'image'])
       const highlight = await ExperienceHighlight.create(data)
 
       return response.created(highlight)
@@ -34,7 +34,7 @@ export default class ExperienceHighlightsController {
   async update({ params, request, response }: HttpContext) {
     try {
       const highlight = await ExperienceHighlight.findOrFail(params.id)
-      const data = request.only(['title', 'description', 'image_url'])
+      const data = request.only(['title', 'description', 'image'])
       highlight.merge(data)
       await highlight.save()
 

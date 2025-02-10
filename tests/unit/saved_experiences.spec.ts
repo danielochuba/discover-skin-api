@@ -56,6 +56,7 @@ test.group('Not authorized to Perform Save Experience CRUD', (group) => {
 })
 
 test.group('Perfomr Saved Experience CRUD with valid authentication', (group) => {
+  group.setup(() => testUtils.db().truncate())
   test('list all saved experiences', async ({ client }) => {
     const user = await User.create({
       firstName: 'Frank',
@@ -70,7 +71,7 @@ test.group('Perfomr Saved Experience CRUD with valid authentication', (group) =>
       image: 'climbing.jpg',
     })
 
-    const loginResponse = await client.post('/login').json({
+    const loginResponse = await client.post('/users/auth/login').json({
       email: user.email,
       password: 'secret',
     })
@@ -102,7 +103,7 @@ test.group('Perfomr Saved Experience CRUD with valid authentication', (group) =>
       image: 'climbing.jpg',
     })
 
-    const loginResponse = await client.post('/login').json({
+    const loginResponse = await client.post('/users/auth/login').json({
       email: user.email,
       password: 'secret',
     })
@@ -133,7 +134,7 @@ test.group('Perfomr Saved Experience CRUD with valid authentication', (group) =>
       image: 'rafting.jpg',
     })
 
-    const loginResponse = await client.post('/login').json({
+    const loginResponse = await client.post('/users/auth/login').json({
       email: user.email,
       password: 'secret',
     })
