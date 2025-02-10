@@ -28,7 +28,7 @@ test.group('Experience Booking CRUD', () => {
       user_id: user.id,
       date: '2025-10-12',
     })
-    response.assertStatus(200)
+    response.assertStatus(201)
   })
 
   test('get an experience booking by ID', async ({ client }) => {
